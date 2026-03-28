@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>300 Recetas para AirFryer — MyKitchenRecep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+html,body{margin:0;padding:0;overflow-x:hidden;width:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%;display:block}
+body{font-family:'DM Sans',sans-serif;color:#111;background:#fff}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;margin:0}
+a{text-decoration:none;color:inherit}
+p{margin:0}
+:root{--pk:#f4ccbe;--green:#00B67A;--red:#e53e3e;--r:12px;--shadow:0 4px 24px rgba(0,0,0,.09)}
+/* PAGES */
+.page{display:none;width:100%}
+.page.active{display:block}
+/* ANN */
+.ann{background:#111;color:#fff;text-align:center;font-size:13px;padding:9px 16px;overflow:hidden;height:38px;position:relative}
+.ann-wrap{position:relative;height:100%}
+.ann-slide{position:absolute;top:0;left:0;right:0;opacity:0;transition:opacity .5s;display:flex;align-items:center;justify-content:center;gap:8px;height:100%}
+.ann-slide.show{opacity:1}
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #f0e8e3;padding:0 24px;width:100%}
+.hdr-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;cursor:pointer}
+.logo span{color:#c0604a}
+.hdr-right{display:flex;align-items:center;gap:18px}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#555}
+.stars{color:#00B67A;font-size:14px}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;background:#111;color:#fff;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:12px;border:none;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.btn-main:hover{opacity:.85}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:#111;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:12px;border:1.5px solid rgba(0,0,0,.15);cursor:pointer;white-space:nowrap}
+.btn-ghost:hover{background:rgba(244,204,190,.3)}
+/* HERO */
+.hero{max-width:1200px;margin:0 auto;padding:60px 24px 50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-sub{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#c0604a;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,4vw,46px);line-height:1.15;margin-bottom:16px}
+.hero-desc{font-size:16px;line-height:1.7;color:#555;margin-bottom:28px}
+.hero-btns{display:flex;flex-direction:column;gap:12px;max-width:380px}
+.hero-img{position:relative;display:flex;justify-content:center}
+.hero-img img{border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);width:100%;max-height:520px;object-fit:cover}
+.hero-badge{position:absolute;bottom:24px;right:24px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:13px}
+/* TRUST STRIP */
+.trust-strip{background:var(--pk);padding:18px 24px}
+.trust-strip-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:clamp(10px,2vw,40px);flex-wrap:wrap}
+.ts-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+/* CONTENT ROWS */
+.content-rows{max-width:1200px;margin:0 auto;padding:70px 24px}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:70px}
+.crow.reverse{direction:rtl}
+.crow.reverse .crow-text,.crow.reverse .crow-img{direction:ltr}
+.crow-img img{border-radius:18px;box-shadow:var(--shadow);width:100%;height:320px;object-fit:cover}
+.crow-text{direction:ltr}
+.crow-tag{display:inline-block;background:var(--pk);color:#6B3A2A;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.crow-text h3{font-size:clamp(20px,2.5vw,28px);margin-bottom:12px;line-height:1.3}
+.crow-text p{font-size:15px;line-height:1.75;color:#555}
+/* FEATURES */
+.features{background:#faf8f6;padding:70px 24px}
+.features-inner{max-width:1200px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:clamp(22px,3vw,36px);margin-bottom:10px}
+.section-title p{color:#666;font-size:15px;max-width:520px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:#fff;border-radius:var(--r);padding:28px;border:1.5px solid #f0e8e3}
+.feat-icon{font-size:32px;margin-bottom:14px}
+.feat-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.feat-card p{font-size:14px;color:#666;line-height:1.6}
+/* PRICING */
+.pricing{max-width:1200px;margin:0 auto;padding:70px 24px}
+.price-box{background:linear-gradient(135deg,#fff5f2,#fff);border:2px solid var(--pk);border-radius:24px;padding:50px;max-width:680px;margin:0 auto;text-align:center;box-shadow:var(--shadow)}
+.price-badge{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.price-box h2{font-size:clamp(22px,3vw,32px);margin-bottom:8px}
+.price-row{display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0}
+.price-old{font-size:22px;text-decoration:line-through;color:#aaa;font-weight:500}
+.price-new{font-size:52px;font-weight:800}
+.price-eur{font-size:28px;font-weight:600}
+.includes-list{text-align:left;margin:20px auto;max-width:400px;display:flex;flex-direction:column;gap:10px}
+.inc-item{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.inc-check{color:#00B67A;font-size:18px;font-weight:700}
+.tp-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:13px;color:#555}
+.tp-stars{color:#00B67A;font-size:16px}
+/* REVIEWS */
+.reviews{background:#faf8f6;padding:70px 24px;overflow:hidden}
+.reviews-inner{max-width:1200px;margin:0 auto}
+.reviews-track-wrap{overflow:hidden}
+.reviews-track{display:flex;gap:20px;transition:transform .4s ease}
+.rcard{min-width:300px;background:#fff;border-radius:var(--r);padding:24px;border:1px solid #f0e8e3;flex-shrink:0}
+.rcard-stars{color:#00B67A;font-size:16px;letter-spacing:2px;margin-bottom:10px}
+.rcard p{font-size:14px;line-height:1.65;color:#444;margin-bottom:16px}
+.rcard-author{display:flex;align-items:center;gap:10px}
+.rcard-av{width:38px;height:38px;border-radius:50%}
+.rcard-name{font-size:13px;font-weight:700}
+.rcard-date{font-size:11px;color:#999}
+.rcard-tp{margin-top:10px}
+.rcard-tp a{font-size:11px;color:#00B67A;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.tp-logo{background:#00B67A;color:#fff;padding:2px 5px;border-radius:3px;font-size:10px;font-weight:700}
+.reviews-nav{display:flex;justify-content:center;gap:10px;margin-top:28px}
+.rnav-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.rnav-btn:hover{background:#111;color:#fff}
+/* FAQ */
+.faq{max-width:720px;margin:0 auto;padding:70px 24px}
+.faq-item{border-bottom:1px solid #eee;padding:18px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;gap:12px}
+.faq-q svg{flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{display:none;font-size:14px;color:#555;line-height:1.7;padding-top:12px}
+.faq-item.open .faq-a{display:block}
+/* CTA */
+.cta-banner{background:#111;color:#fff;padding:70px 24px;text-align:center}
+.cta-banner h2{font-size:clamp(24px,3vw,38px);margin-bottom:14px}
+.cta-banner p{font-size:16px;opacity:.75;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.btn-main.light{background:#fff;color:#111}
+/* FOOTER */
+footer{background:#f9f7f5;padding:50px 24px 30px;border-top:1px solid #f0e8e3}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;margin-bottom:12px}
+.foot-logo span{color:#c0604a}
+.foot-desc{font-size:13px;color:#777;line-height:1.7}
+.foot-col h5{font-size:13px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.8px}
+.foot-col ul{list-style:none;padding:0;margin:0}
+.foot-col ul li{margin-bottom:8px}
+.foot-col ul li a{font-size:13px;color:#666}
+.foot-col ul li a:hover{color:#111}
+.foot-bottom{border-top:1px solid #e8e0db;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-bottom p{font-size:12px;color:#999;margin:0}
+/* PRODUCT PAGE */
+.prod-wrap{max-width:1200px;margin:0 auto;padding:40px 24px}
+.breadcrumb{font-size:13px;color:#888;margin-bottom:30px}
+.breadcrumb a{color:#888;cursor:pointer}
+.prod-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;align-items:start}
+.prod-gallery{display:flex;flex-direction:column;gap:12px}
+.prod-main-img img{width:100%;height:420px;object-fit:cover;border-radius:18px}
+.prod-thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.prod-thumb{width:80px;height:80px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.prod-thumb.active{border-color:#111}
+.prod-thumb img{width:100%;height:100%;object-fit:cover}
+.prod-labels{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.prod-label{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px}
+.label-sain{background:#e8f8f1;color:#1a7a4a}
+.label-gourmet{background:#fff3e0;color:#e65100}
+.label-rapide{background:#e8eaf6;color:#3949ab}
+.label-famille{background:#fce4ec;color:#c2185b}
+.prod-info h1{font-size:clamp(22px,3vw,30px);margin-bottom:10px;line-height:1.3}
+.prod-tp{display:flex;align-items:center;gap:8px;font-size:13px;color:#555;margin-bottom:20px}
+.prod-stars{color:#00B67A;font-size:15px}
+.prod-price{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.prod-old{font-size:18px;text-decoration:line-through;color:#aaa}
+.prod-new{font-size:42px;font-weight:800}
+.prod-eur{font-size:22px;font-weight:600}
+.prod-save{background:#e8f8f1;color:#1a7a4a;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
+.prod-trust{display:flex;gap:20px;flex-wrap:wrap;margin:22px 0}
+.pt-item{font-size:13px;font-weight:500}
+.btn-buy-prod{width:100%;justify-content:center;font-size:17px;padding:18px;margin-bottom:8px;border-radius:14px}
+.prod-secure{font-size:12px;color:#888;text-align:center;margin:0 0 16px}
+.prod-badges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;padding:20px;background:#faf8f6;border-radius:var(--r)}
+.pb-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500}
+.pb-icon{font-size:22px}
+/* RECIPE CATEGORIES */
+.recipe-cats-section{padding:60px 0}
+.recipe-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.rcat{background:#fff;border-radius:16px;padding:22px;border:2px solid #f0e8e3;transition:transform .2s,box-shadow .2s}
+.rcat:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.rcat-icon{font-size:34px;margin-bottom:10px}
+.rcat h4{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px}
+.rcat p{font-size:12px;color:#666;line-height:1.5;margin-bottom:10px}
+.rcat-count{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#f9f7f5;color:#555}
+.rcat-sain{border-color:#c8f0dd}.rcat-sain .rcat-count{background:#e8f8f1;color:#1a7a4a}
+.rcat-gourmet{border-color:#ffd9b3}.rcat-gourmet .rcat-count{background:#fff3e0;color:#e65100}
+.rcat-rapide{border-color:#c5cae9}.rcat-rapide .rcat-count{background:#e8eaf6;color:#3949ab}
+.rcat-famille{border-color:#f8bbd0}.rcat-famille .rcat-count{background:#fce4ec;color:#c2185b}
+.rcat-veggie{border-color:#dcedc8}.rcat-veggie .rcat-count{background:#f1f8e9;color:#558b2f}
+.rcat-dulce{border-color:#f8bbd0}.rcat-dulce .rcat-count{background:#fce4ec;color:#ad1457}
+.rcat-snack{border-color:#ffe0b2}.rcat-snack .rcat-count{background:#fff8e1;color:#f57f17}
+.rcat-fish{border-color:#b3e5fc}.rcat-fish .rcat-count{background:#e1f5fe;color:#0277bd}
+/* PROD SPECS / DESC */
+.prod-specs{margin:40px 0}
+.prod-specs h3,.prod-desc h3,.prod-reviews h3{font-size:18px;margin-bottom:16px}
+.specs-table{width:100%;border-collapse:collapse}
+.specs-table tr{border-bottom:1px solid #f0e8e3}
+.specs-table td{padding:12px 10px;font-size:14px}
+.specs-table td:first-child{font-weight:600;width:45%;color:#555}
+.prod-desc{margin:40px 0}
+.prod-desc p{font-size:15px;line-height:1.8;color:#444;margin-bottom:16px}
+.prod-desc-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.prod-desc-imgs img{border-radius:12px;width:100%;height:200px;object-fit:cover}
+.what-get{background:#f0faf5;border-radius:var(--r);padding:24px;margin:24px 0}
+.what-get h4{font-size:16px;margin-bottom:14px}
+.wg-list{display:flex;flex-direction:column;gap:10px}
+.wg-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.wg-check{color:#00B67A;font-weight:700}
+.prod-reviews{margin:50px 0}
+.prod-rcards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.prod-cta{background:linear-gradient(135deg,#fff5f2,#fff);border:2px solid var(--pk);border-radius:20px;padding:40px;text-align:center;margin:50px 0}
+.prod-cta-badge{display:inline-block;background:var(--red);color:#fff;font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:14px}
+.prod-cta h3{font-size:24px;margin-bottom:10px}
+.prod-cta p{font-size:15px;color:#666;margin-bottom:16px}
+.prod-cta-price{margin:12px 0}
+/* STICKY */
+.sticky-buy{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,.12);z-index:900;align-items:center;gap:12px}
+.sb-price{font-size:20px;font-weight:800}
+.sb-old{font-size:13px;text-decoration:line-through;color:#aaa}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero,.prod-top,.footer-inner{grid-template-columns:1fr}
+  .crow,.crow.reverse{grid-template-columns:1fr;direction:ltr}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .prod-rcards{grid-template-columns:1fr}
+  .prod-desc-imgs{grid-template-columns:1fr}
+  .recipe-cats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:40px 16px 30px;gap:24px}
+  .hero-img{order:-1}
+  .hero-img img{max-height:300px}
+  .content-rows{padding:40px 16px}
+  .crow{gap:24px;margin-bottom:40px}
+}
+@media(max-width:600px){
+  .features-grid{grid-template-columns:1fr}
+  .hdr-right .trust-badge{display:none}
+  .sticky-buy{display:flex}
+  .price-box{padding:32px 16px}
+  .price-new{font-size:38px}
+  .hdr{padding:0 16px}
+  .features,.pricing,.reviews,.faq,.cta-banner{padding:50px 16px}
+  footer{padding:40px 16px 24px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px}
+  .prod-wrap{padding:24px 16px}
+  .prod-main-img img{height:280px}
+  .prod-thumb{width:60px;height:60px}
+  .prod-badges{grid-template-columns:1fr}
+  .rcard{min-width:240px}
+  .trust-strip{padding:14px 16px}
+  .ts-item{font-size:11px}
+  .recipe-cats{grid-template-columns:1fr 1fr;gap:10px}
+  .rcat{padding:14px}
+  .rcat-icon{font-size:26px}
+  .prod-rcards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== PAGE HOME ======== -->
+<div class="page active" id="page-home">
+
+<div class="ann"><div class="ann-wrap">
+  <div class="ann-slide show">📥 Descarga digital instantánea — sin esperas</div>
+  <div class="ann-slide">🔒 Pago 100% seguro · SSL</div>
+  <div class="ann-slide">⚡ Oferta limitada — 77% de descuento</div>
+</div></div>
+
+<header class="hdr"><div class="hdr-inner">
+  <div class="logo" onclick="goHome()">My<span>Kitchen</span>Recep</div>
+  <div class="hdr-right">
+    <a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank" class="trust-badge"><span class="stars">★★★★★</span><span>4.8 · Trustpilot</span></a>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Obtener — 6,99€</a>
+  </div>
+</div></header>
+
+<section class="hero">
+  <div>
+    <p class="hero-sub">🔥 Más de 12.000 recetas preparadas</p>
+    <h1>300 Recetas para<br><em>AirFryer</em> irresistibles</h1>
+    <p class="hero-desc">El único ebook que necesitas para sacarle el máximo partido a tu freidora de aire. Desde entrantes crujientes hasta postres sorprendentes.</p>
+    <div class="hero-btns">
+      <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Obtener — <s style="opacity:.5;font-weight:400">29,99€</s> 6,99€</a>
+      <a class="btn-ghost" href="#product" onclick="event.preventDefault();goProduct()">Ver página del producto ↓</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="img4.jpg" alt="Receta AirFryer">
+    <div class="hero-badge"><span style="font-size:22px">📥</span><div><strong>Descarga inmediata</strong><br><small style="color:#777">PDF + EPUB</small></div></div>
+  </div>
+</section>
+
+<div class="trust-strip"><div class="trust-strip-inner">
+  <div class="ts-item">⚡ Descarga instantánea</div>
+  <div class="ts-item">🔒 Pago seguro</div>
+  <div class="ts-item">📱 Todos los dispositivos</div>
+  <div class="ts-item">♾️ Acceso de por vida</div>
+  <div class="ts-item">↩️ Garantía 30 días</div>
+</div></div>
+
+<div class="content-rows">
+  <div class="crow">
+    <div class="crow-img"><img src="img3.jpg" alt="Variedad recetas" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">🍽️ Variedad sin límites</span><h3>300 recetas para todos los gustos</h3><p>Desde pollo crujiente y verduras asadas hasta postres y pizzas. Organizado por categorías para encontrar siempre lo que buscas.</p></div>
+  </div>
+  <div class="crow reverse">
+    <div class="crow-img"><img src="img2.jpg" alt="Cocina sana" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">🥗 Cocina sana sin esfuerzo</span><h3>Menos aceite, más sabor, mejor salud</h3><p>Reduce hasta un 80% el aceite. Recetas crujientes, sabrosas y sin culpa para toda la familia.</p></div>
+  </div>
+  <div class="crow">
+    <div class="crow-img"><img src="img1.jpg" alt="Recetas rápidas" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">⏱️ Listo en minutos</span><h3>Instrucciones claras, tiempos exactos</h3><p>Cada receta incluye temperatura exacta y trucos para el resultado perfecto. Para principiantes y expertos.</p></div>
+  </div>
+</div>
+
+<div class="features"><div class="features-inner">
+  <div class="section-title"><h2>¿Qué incluye el ebook?</h2><p>Todo lo que necesitas para dominar el AirFryer</p></div>
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon">📖</div><h4>300 recetas completas</h4><p>Entrantes, carnes, pescados, vegetariano y postres organizados por categoría.</p></div>
+    <div class="feat-card"><div class="feat-icon">🌡️</div><h4>Guía de temperaturas</h4><p>Tiempos y temperaturas por alimento para todos los modelos del mercado.</p></div>
+    <div class="feat-card"><div class="feat-icon">🥦</div><h4>Opciones saludables</h4><p>Recetas bajas en calorías, sin gluten y aptas para dietas específicas.</p></div>
+    <div class="feat-card"><div class="feat-icon">⏱️</div><h4>Recetas de 15 min</h4><p>Capítulo especial para los días con poco tiempo.</p></div>
+    <div class="feat-card"><div class="feat-icon">👨‍👩‍👧</div><h4>Para toda la familia</h4><p>Recetas para niños, para compartir y para impresionar a tus invitados.</p></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><h4>PDF + EPUB</h4><p>Móvil, tablet, ordenador o e-reader. Acceso de por vida.</p></div>
+  </div>
+</div></div>
+
+<div class="pricing">
+  <div class="section-title" style="margin-bottom:36px"><h2>Obtén acceso hoy mismo</h2><p>Precio especial de lanzamiento</p></div>
+  <div class="price-box">
+    <span class="price-badge">🔥 -77% DESCUENTO</span>
+    <h2>300 Recetas para AirFryer</h2>
+    <p style="color:#666;font-size:14px">PDF + EPUB · Descarga inmediata</p>
+    <div class="price-row"><span class="price-old">29,99€</span><span class="price-new">6,99<span class="price-eur">€</span></span></div>
+    <div class="includes-list">
+      <div class="inc-item"><span class="inc-check">✓</span> 300 recetas paso a paso</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Guía de temperaturas</div>
+      <div class="inc-item"><span class="inc-check">✓</span> PDF + EPUB</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Acceso y actualizaciones de por vida</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Garantía 30 días</div>
+    </div>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main" style="width:100%;max-width:360px;justify-content:center;font-size:16px;padding:16px;margin:0 auto;display:flex">Descargar ahora por 6,99€</a>
+    <div class="tp-badge"><span class="tp-stars">★★★★★</span><span>4.8/5 Trustpilot · +1.200 clientes</span></div>
+  </div>
+</div>
+
+<div class="reviews"><div class="reviews-inner">
+  <div class="section-title"><h2>Lo que dicen nuestros clientes</h2><p>Más de 1.200 personas ya cocinan mejor</p></div>
+  <div class="reviews-track-wrap"><div class="reviews-track" id="reviews-track">
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Increíble ebook. Lo uso cada semana y cada receta me sale perfecta."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23E8D5B7'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%236B4423' font-weight='bold'%3EML%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">María L.</div><div class="rcard-date">Madrid · hace 2 semanas</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Resultados perfectos desde el primer día con mi Cosori."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23C8E6C9'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%232E7D32' font-weight='bold'%3ECR%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Carlos R.</div><div class="rcard-date">Barcelona · hace 1 mes</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Muy completo. Me ha ayudado a cocinar más sano sin renunciar al sabor."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23BBDEFB'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%231565C0' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Ana G.</div><div class="rcard-date">Valencia · hace 3 semanas</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Las alitas de pollo son imposibles de superar. Mis hijos lo piden cada día."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23F8BBD0'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%23880E4F' font-weight='bold'%3ESM%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Sofía M.</div><div class="rcard-date">Sevilla · hace 1 mes</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Vale mucho más de lo que cuesta. Recetas con trucos que marcan la diferencia."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23FFE0B2'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%23E65100' font-weight='bold'%3ELF%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Luis F.</div><div class="rcard-date">Bilbao · hace 2 meses</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+  </div></div>
+  <div class="reviews-nav">
+    <button class="rnav-btn" onclick="slideReviews(-1)">&#8249;</button>
+    <button class="rnav-btn" onclick="slideReviews(1)">&#8250;</button>
+  </div>
+</div></div>
+
+<div class="faq">
+  <div class="section-title"><h2>Preguntas frecuentes</h2></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Cómo recibo el eBook?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Recibirás un email con el enlace de descarga en menos de 2 minutos. PDF y EPUB incluidos.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿En qué dispositivos puedo leerlo?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Smartphone, tablet, ordenador y e-reader Kindle o Kobo.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Funciona con cualquier AirFryer?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Sí. Compatible con Philips, Cosori, Tefal, Ninja, Lidl y muchas más marcas.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Tengo garantía de devolución?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Sí. 30 días de garantía completa. Devolución del 100% sin preguntas.</div></div>
+</div>
+
+<div class="cta-banner">
+  <h2>¿A qué esperas?</h2>
+  <p>Únete a más de 12.000 personas que ya cocinan mejor con su AirFryer</p>
+  <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main light" style="font-size:16px;padding:16px 36px;display:inline-flex">Obtener ahora — solo 6,99€</a>
+</div>
+
+<footer><div class="footer-inner">
+  <div><div class="foot-logo">My<span>Kitchen</span>Recep</div><p class="foot-desc">Tu guía definitiva para cocinar más sano con tu freidora de aire.</p></div>
+  <div class="foot-col"><h5>Navegación</h5><ul><li><a onclick="goHome()" style="cursor:pointer">Inicio</a></li><li><a href="#product" onclick="event.preventDefault();goProduct()">Producto</a></li></ul></div>
+  <div class="foot-col"><h5>Soporte</h5><ul><li><a href="#">Contacto</a></li><li><a href="#">Garantía</a></li></ul></div>
+  <div class="foot-col"><h5>Legal</h5><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li></ul></div>
+</div>
+<div class="foot-bottom"><p>© 2025 MyKitchenRecep.com</p><p style="font-size:11px;color:#bbb">Este sitio puede recibir comisiones por ventas referidas</p></div>
+</footer>
+
+<div class="sticky-buy" id="sticky-buy">
+  <div><span class="sb-price">6,99€</span><br><span class="sb-old">29,99€</span></div>
+  <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main" style="flex:1;justify-content:center">Obtener ahora</a>
+</div>
+
+</div><!-- /page-home -->
+
+
+<!-- ======== PAGE PRODUCT ======== -->
+<div class="page" id="page-product">
+
+<div class="ann"><div class="ann-wrap">
+  <div class="ann-slide show">📥 Descarga digital instantánea — sin esperas</div>
+  <div class="ann-slide">🔒 Pago 100% seguro · SSL</div>
+  <div class="ann-slide">⚡ Oferta limitada — 77% de descuento</div>
+</div></div>
+
+<header class="hdr"><div class="hdr-inner">
+  <div class="logo" onclick="goHome()">My<span>Kitchen</span>Recep</div>
+  <div class="hdr-right">
+    <a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank" class="trust-badge"><span class="stars">★★★★★</span><span>4.8 · Trustpilot</span></a>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Comprar — 6,99€</a>
+  </div>
+</div></header>
+
+<div class="prod-wrap">
+  <div class="breadcrumb"><a onclick="goHome()">Inicio</a> › 300 Recetas para AirFryer</div>
+
+  <div class="prod-top">
+    <div class="prod-gallery">
+      <div class="prod-main-img"><img id="main-img" src="img0_cover.jpg" alt="300 Recetas para AirFryer"></div>
+      <div class="prod-thumbs">
+        <div class="prod-thumb active" onclick="switchImg(this,this.querySelector('img').src)"<img src="img0_cover.jpg" alt="Portada"><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>300 Recetas para AirFryer — MyKitchenRecep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+html,body{margin:0;padding:0;overflow-x:hidden;width:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%;display:block}
+body{font-family:'DM Sans',sans-serif;color:#111;background:#fff}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;margin:0}
+a{text-decoration:none;color:inherit}
+p{margin:0}
+:root{--pk:#f4ccbe;--green:#00B67A;--red:#e53e3e;--r:12px;--shadow:0 4px 24px rgba(0,0,0,.09)}
+/* PAGES */
+.page{display:none;width:100%}
+.page.active{display:block}
+/* ANN */
+.ann{background:#111;color:#fff;text-align:center;font-size:13px;padding:9px 16px;overflow:hidden;height:38px;position:relative}
+.ann-wrap{position:relative;height:100%}
+.ann-slide{position:absolute;top:0;left:0;right:0;opacity:0;transition:opacity .5s;display:flex;align-items:center;justify-content:center;gap:8px;height:100%}
+.ann-slide.show{opacity:1}
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #f0e8e3;padding:0 24px;width:100%}
+.hdr-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;cursor:pointer}
+.logo span{color:#c0604a}
+.hdr-right{display:flex;align-items:center;gap:18px}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#555}
+.stars{color:#00B67A;font-size:14px}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;background:#111;color:#fff;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:12px;border:none;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.btn-main:hover{opacity:.85}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:#111;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:12px;border:1.5px solid rgba(0,0,0,.15);cursor:pointer;white-space:nowrap}
+.btn-ghost:hover{background:rgba(244,204,190,.3)}
+/* HERO */
+.hero{max-width:1200px;margin:0 auto;padding:60px 24px 50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-sub{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#c0604a;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,4vw,46px);line-height:1.15;margin-bottom:16px}
+.hero-desc{font-size:16px;line-height:1.7;color:#555;margin-bottom:28px}
+.hero-btns{display:flex;flex-direction:column;gap:12px;max-width:380px}
+.hero-img{position:relative;display:flex;justify-content:center}
+.hero-img img{border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);width:100%;max-height:520px;object-fit:cover}
+.hero-badge{position:absolute;bottom:24px;right:24px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:13px}
+/* TRUST STRIP */
+.trust-strip{background:var(--pk);padding:18px 24px}
+.trust-strip-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:clamp(10px,2vw,40px);flex-wrap:wrap}
+.ts-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+/* CONTENT ROWS */
+.content-rows{max-width:1200px;margin:0 auto;padding:70px 24px}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:70px}
+.crow.reverse{direction:rtl}
+.crow.reverse .crow-text,.crow.reverse .crow-img{direction:ltr}
+.crow-img img{border-radius:18px;box-shadow:var(--shadow);width:100%;height:320px;object-fit:cover}
+.crow-text{direction:ltr}
+.crow-tag{display:inline-block;background:var(--pk);color:#6B3A2A;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.crow-text h3{font-size:clamp(20px,2.5vw,28px);margin-bottom:12px;line-height:1.3}
+.crow-text p{font-size:15px;line-height:1.75;color:#555}
+/* FEATURES */
+.features{background:#faf8f6;padding:70px 24px}
+.features-inner{max-width:1200px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:clamp(22px,3vw,36px);margin-bottom:10px}
+.section-title p{color:#666;font-size:15px;max-width:520px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:#fff;border-radius:var(--r);padding:28px;border:1.5px solid #f0e8e3}
+.feat-icon{font-size:32px;margin-bottom:14px}
+.feat-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.feat-card p{font-size:14px;color:#666;line-height:1.6}
+/* PRICING */
+.pricing{max-width:1200px;margin:0 auto;padding:70px 24px}
+.price-box{background:linear-gradient(135deg,#fff5f2,#fff);border:2px solid var(--pk);border-radius:24px;padding:50px;max-width:680px;margin:0 auto;text-align:center;box-shadow:var(--shadow)}
+.price-badge{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.price-box h2{font-size:clamp(22px,3vw,32px);margin-bottom:8px}
+.price-row{display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0}
+.price-old{font-size:22px;text-decoration:line-through;color:#aaa;font-weight:500}
+.price-new{font-size:52px;font-weight:800}
+.price-eur{font-size:28px;font-weight:600}
+.includes-list{text-align:left;margin:20px auto;max-width:400px;display:flex;flex-direction:column;gap:10px}
+.inc-item{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.inc-check{color:#00B67A;font-size:18px;font-weight:700}
+.tp-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:13px;color:#555}
+.tp-stars{color:#00B67A;font-size:16px}
+/* REVIEWS */
+.reviews{background:#faf8f6;padding:70px 24px;overflow:hidden}
+.reviews-inner{max-width:1200px;margin:0 auto}
+.reviews-track-wrap{overflow:hidden}
+.reviews-track{display:flex;gap:20px;transition:transform .4s ease}
+.rcard{min-width:300px;background:#fff;border-radius:var(--r);padding:24px;border:1px solid #f0e8e3;flex-shrink:0}
+.rcard-stars{color:#00B67A;font-size:16px;letter-spacing:2px;margin-bottom:10px}
+.rcard p{font-size:14px;line-height:1.65;color:#444;margin-bottom:16px}
+.rcard-author{display:flex;align-items:center;gap:10px}
+.rcard-av{width:38px;height:38px;border-radius:50%}
+.rcard-name{font-size:13px;font-weight:700}
+.rcard-date{font-size:11px;color:#999}
+.rcard-tp{margin-top:10px}
+.rcard-tp a{font-size:11px;color:#00B67A;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.tp-logo{background:#00B67A;color:#fff;padding:2px 5px;border-radius:3px;font-size:10px;font-weight:700}
+.reviews-nav{display:flex;justify-content:center;gap:10px;margin-top:28px}
+.rnav-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.rnav-btn:hover{background:#111;color:#fff}
+/* FAQ */
+.faq{max-width:720px;margin:0 auto;padding:70px 24px}
+.faq-item{border-bottom:1px solid #eee;padding:18px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;gap:12px}
+.faq-q svg{flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{display:none;font-size:14px;color:#555;line-height:1.7;padding-top:12px}
+.faq-item.open .faq-a{display:block}
+/* CTA */
+.cta-banner{background:#111;color:#fff;padding:70px 24px;text-align:center}
+.cta-banner h2{font-size:clamp(24px,3vw,38px);margin-bottom:14px}
+.cta-banner p{font-size:16px;opacity:.75;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.btn-main.light{background:#fff;color:#111}
+/* FOOTER */
+footer{background:#f9f7f5;padding:50px 24px 30px;border-top:1px solid #f0e8e3}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;margin-bottom:12px}
+.foot-logo span{color:#c0604a}
+.foot-desc{font-size:13px;color:#777;line-height:1.7}
+.foot-col h5{font-size:13px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.8px}
+.foot-col ul{list-style:none;padding:0;margin:0}
+.foot-col ul li{margin-bottom:8px}
+.foot-col ul li a{font-size:13px;color:#666}
+.foot-col ul li a:hover{color:#111}
+.foot-bottom{border-top:1px solid #e8e0db;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-bottom p{font-size:12px;color:#999;margin:0}
+/* PRODUCT PAGE */
+.prod-wrap{max-width:1200px;margin:0 auto;padding:40px 24px}
+.breadcrumb{font-size:13px;color:#888;margin-bottom:30px}
+.breadcrumb a{color:#888;cursor:pointer}
+.prod-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;align-items:start}
+.prod-gallery{display:flex;flex-direction:column;gap:12px}
+.prod-main-img img{width:100%;height:420px;object-fit:cover;border-radius:18px}
+.prod-thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.prod-thumb{width:80px;height:80px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.prod-thumb.active{border-color:#111}
+.prod-thumb img{width:100%;height:100%;object-fit:cover}
+.prod-labels{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.prod-label{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px}
+.label-sain{background:#e8f8f1;color:#1a7a4a}
+.label-gourmet{background:#fff3e0;color:#e65100}
+.label-rapide{background:#e8eaf6;color:#3949ab}
+.label-famille{background:#fce4ec;color:#c2185b}
+.prod-info h1{font-size:clamp(22px,3vw,30px);margin-bottom:10px;line-height:1.3}
+.prod-tp{display:flex;align-items:center;gap:8px;font-size:13px;color:#555;margin-bottom:20px}
+.prod-stars{color:#00B67A;font-size:15px}
+.prod-price{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.prod-old{font-size:18px;text-decoration:line-through;color:#aaa}
+.prod-new{font-size:42px;font-weight:800}
+.prod-eur{font-size:22px;font-weight:600}
+.prod-save{background:#e8f8f1;color:#1a7a4a;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
+.prod-trust{display:flex;gap:20px;flex-wrap:wrap;margin:22px 0}
+.pt-item{font-size:13px;font-weight:500}
+.btn-buy-prod{width:100%;justify-content:center;font-size:17px;padding:18px;margin-bottom:8px;border-radius:14px}
+.prod-secure{font-size:12px;color:#888;text-align:center;margin:0 0 16px}
+.prod-badges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;padding:20px;background:#faf8f6;border-radius:var(--r)}
+.pb-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500}
+.pb-icon{font-size:22px}
+/* RECIPE CATEGORIES */
+.recipe-cats-section{padding:60px 0}
+.recipe-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.rcat{background:#fff;border-radius:16px;padding:22px;border:2px solid #f0e8e3;transition:transform .2s,box-shadow .2s}
+.rcat:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.rcat-icon{font-size:34px;margin-bottom:10px}
+.rcat h4{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px}
+.rcat p{font-size:12px;color:#666;line-height:1.5;margin-bottom:10px}
+.rcat-count{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;background:#f9f7f5;color:#555}
+.rcat-sain{border-color:#c8f0dd}.rcat-sain .rcat-count{background:#e8f8f1;color:#1a7a4a}
+.rcat-gourmet{border-color:#ffd9b3}.rcat-gourmet .rcat-count{background:#fff3e0;color:#e65100}
+.rcat-rapide{border-color:#c5cae9}.rcat-rapide .rcat-count{background:#e8eaf6;color:#3949ab}
+.rcat-famille{border-color:#f8bbd0}.rcat-famille .rcat-count{background:#fce4ec;color:#c2185b}
+.rcat-veggie{border-color:#dcedc8}.rcat-veggie .rcat-count{background:#f1f8e9;color:#558b2f}
+.rcat-dulce{border-color:#f8bbd0}.rcat-dulce .rcat-count{background:#fce4ec;color:#ad1457}
+.rcat-snack{border-color:#ffe0b2}.rcat-snack .rcat-count{background:#fff8e1;color:#f57f17}
+.rcat-fish{border-color:#b3e5fc}.rcat-fish .rcat-count{background:#e1f5fe;color:#0277bd}
+/* PROD SPECS / DESC */
+.prod-specs{margin:40px 0}
+.prod-specs h3,.prod-desc h3,.prod-reviews h3{font-size:18px;margin-bottom:16px}
+.specs-table{width:100%;border-collapse:collapse}
+.specs-table tr{border-bottom:1px solid #f0e8e3}
+.specs-table td{padding:12px 10px;font-size:14px}
+.specs-table td:first-child{font-weight:600;width:45%;color:#555}
+.prod-desc{margin:40px 0}
+.prod-desc p{font-size:15px;line-height:1.8;color:#444;margin-bottom:16px}
+.prod-desc-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.prod-desc-imgs img{border-radius:12px;width:100%;height:200px;object-fit:cover}
+.what-get{background:#f0faf5;border-radius:var(--r);padding:24px;margin:24px 0}
+.what-get h4{font-size:16px;margin-bottom:14px}
+.wg-list{display:flex;flex-direction:column;gap:10px}
+.wg-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.wg-check{color:#00B67A;font-weight:700}
+.prod-reviews{margin:50px 0}
+.prod-rcards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.prod-cta{background:linear-gradient(135deg,#fff5f2,#fff);border:2px solid var(--pk);border-radius:20px;padding:40px;text-align:center;margin:50px 0}
+.prod-cta-badge{display:inline-block;background:var(--red);color:#fff;font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:14px}
+.prod-cta h3{font-size:24px;margin-bottom:10px}
+.prod-cta p{font-size:15px;color:#666;margin-bottom:16px}
+.prod-cta-price{margin:12px 0}
+/* STICKY */
+.sticky-buy{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px 16px;box-shadow:0 -4px 20px rgba(0,0,0,.12);z-index:900;align-items:center;gap:12px}
+.sb-price{font-size:20px;font-weight:800}
+.sb-old{font-size:13px;text-decoration:line-through;color:#aaa}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero,.prod-top,.footer-inner{grid-template-columns:1fr}
+  .crow,.crow.reverse{grid-template-columns:1fr;direction:ltr}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .prod-rcards{grid-template-columns:1fr}
+  .prod-desc-imgs{grid-template-columns:1fr}
+  .recipe-cats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:40px 16px 30px;gap:24px}
+  .hero-img{order:-1}
+  .hero-img img{max-height:300px}
+  .content-rows{padding:40px 16px}
+  .crow{gap:24px;margin-bottom:40px}
+}
+@media(max-width:600px){
+  .features-grid{grid-template-columns:1fr}
+  .hdr-right .trust-badge{display:none}
+  .sticky-buy{display:flex}
+  .price-box{padding:32px 16px}
+  .price-new{font-size:38px}
+  .hdr{padding:0 16px}
+  .features,.pricing,.reviews,.faq,.cta-banner{padding:50px 16px}
+  footer{padding:40px 16px 24px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px}
+  .prod-wrap{padding:24px 16px}
+  .prod-main-img img{height:280px}
+  .prod-thumb{width:60px;height:60px}
+  .prod-badges{grid-template-columns:1fr}
+  .rcard{min-width:240px}
+  .trust-strip{padding:14px 16px}
+  .ts-item{font-size:11px}
+  .recipe-cats{grid-template-columns:1fr 1fr;gap:10px}
+  .rcat{padding:14px}
+  .rcat-icon{font-size:26px}
+  .prod-rcards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== PAGE HOME ======== -->
+<div class="page active" id="page-home">
+
+<div class="ann"><div class="ann-wrap">
+  <div class="ann-slide show">📥 Descarga digital instantánea — sin esperas</div>
+  <div class="ann-slide">🔒 Pago 100% seguro · SSL</div>
+  <div class="ann-slide">⚡ Oferta limitada — 77% de descuento</div>
+</div></div>
+
+<header class="hdr"><div class="hdr-inner">
+  <div class="logo" onclick="goHome()">My<span>Kitchen</span>Recep</div>
+  <div class="hdr-right">
+    <a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank" class="trust-badge"><span class="stars">★★★★★</span><span>4.8 · Trustpilot</span></a>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Obtener — 6,99€</a>
+  </div>
+</div></header>
+
+<section class="hero">
+  <div>
+    <p class="hero-sub">🔥 Más de 12.000 recetas preparadas</p>
+    <h1>300 Recetas para<br><em>AirFryer</em> irresistibles</h1>
+    <p class="hero-desc">El único ebook que necesitas para sacarle el máximo partido a tu freidora de aire. Desde entrantes crujientes hasta postres sorprendentes.</p>
+    <div class="hero-btns">
+      <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Obtener — <s style="opacity:.5;font-weight:400">29,99€</s> 6,99€</a>
+      <a class="btn-ghost" href="#product" onclick="event.preventDefault();goProduct()">Ver página del producto ↓</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="img4.jpg" alt="Receta AirFryer">
+    <div class="hero-badge"><span style="font-size:22px">📥</span><div><strong>Descarga inmediata</strong><br><small style="color:#777">PDF + EPUB</small></div></div>
+  </div>
+</section>
+
+<div class="trust-strip"><div class="trust-strip-inner">
+  <div class="ts-item">⚡ Descarga instantánea</div>
+  <div class="ts-item">🔒 Pago seguro</div>
+  <div class="ts-item">📱 Todos los dispositivos</div>
+  <div class="ts-item">♾️ Acceso de por vida</div>
+  <div class="ts-item">↩️ Garantía 30 días</div>
+</div></div>
+
+<div class="content-rows">
+  <div class="crow">
+    <div class="crow-img"><img src="img3.jpg" alt="Variedad recetas" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">🍽️ Variedad sin límites</span><h3>300 recetas para todos los gustos</h3><p>Desde pollo crujiente y verduras asadas hasta postres y pizzas. Organizado por categorías para encontrar siempre lo que buscas.</p></div>
+  </div>
+  <div class="crow reverse">
+    <div class="crow-img"><img src="img2.jpg" alt="Cocina sana" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">🥗 Cocina sana sin esfuerzo</span><h3>Menos aceite, más sabor, mejor salud</h3><p>Reduce hasta un 80% el aceite. Recetas crujientes, sabrosas y sin culpa para toda la familia.</p></div>
+  </div>
+  <div class="crow">
+    <div class="crow-img"><img src="img1.jpg" alt="Recetas rápidas" loading="lazy"></div>
+    <div class="crow-text"><span class="crow-tag">⏱️ Listo en minutos</span><h3>Instrucciones claras, tiempos exactos</h3><p>Cada receta incluye temperatura exacta y trucos para el resultado perfecto. Para principiantes y expertos.</p></div>
+  </div>
+</div>
+
+<div class="features"><div class="features-inner">
+  <div class="section-title"><h2>¿Qué incluye el ebook?</h2><p>Todo lo que necesitas para dominar el AirFryer</p></div>
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon">📖</div><h4>300 recetas completas</h4><p>Entrantes, carnes, pescados, vegetariano y postres organizados por categoría.</p></div>
+    <div class="feat-card"><div class="feat-icon">🌡️</div><h4>Guía de temperaturas</h4><p>Tiempos y temperaturas por alimento para todos los modelos del mercado.</p></div>
+    <div class="feat-card"><div class="feat-icon">🥦</div><h4>Opciones saludables</h4><p>Recetas bajas en calorías, sin gluten y aptas para dietas específicas.</p></div>
+    <div class="feat-card"><div class="feat-icon">⏱️</div><h4>Recetas de 15 min</h4><p>Capítulo especial para los días con poco tiempo.</p></div>
+    <div class="feat-card"><div class="feat-icon">👨‍👩‍👧</div><h4>Para toda la familia</h4><p>Recetas para niños, para compartir y para impresionar a tus invitados.</p></div>
+    <div class="feat-card"><div class="feat-icon">📱</div><h4>PDF + EPUB</h4><p>Móvil, tablet, ordenador o e-reader. Acceso de por vida.</p></div>
+  </div>
+</div></div>
+
+<div class="pricing">
+  <div class="section-title" style="margin-bottom:36px"><h2>Obtén acceso hoy mismo</h2><p>Precio especial de lanzamiento</p></div>
+  <div class="price-box">
+    <span class="price-badge">🔥 -77% DESCUENTO</span>
+    <h2>300 Recetas para AirFryer</h2>
+    <p style="color:#666;font-size:14px">PDF + EPUB · Descarga inmediata</p>
+    <div class="price-row"><span class="price-old">29,99€</span><span class="price-new">6,99<span class="price-eur">€</span></span></div>
+    <div class="includes-list">
+      <div class="inc-item"><span class="inc-check">✓</span> 300 recetas paso a paso</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Guía de temperaturas</div>
+      <div class="inc-item"><span class="inc-check">✓</span> PDF + EPUB</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Acceso y actualizaciones de por vida</div>
+      <div class="inc-item"><span class="inc-check">✓</span> Garantía 30 días</div>
+    </div>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main" style="width:100%;max-width:360px;justify-content:center;font-size:16px;padding:16px;margin:0 auto;display:flex">Descargar ahora por 6,99€</a>
+    <div class="tp-badge"><span class="tp-stars">★★★★★</span><span>4.8/5 Trustpilot · +1.200 clientes</span></div>
+  </div>
+</div>
+
+<div class="reviews"><div class="reviews-inner">
+  <div class="section-title"><h2>Lo que dicen nuestros clientes</h2><p>Más de 1.200 personas ya cocinan mejor</p></div>
+  <div class="reviews-track-wrap"><div class="reviews-track" id="reviews-track">
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Increíble ebook. Lo uso cada semana y cada receta me sale perfecta."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23E8D5B7'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%236B4423' font-weight='bold'%3EML%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">María L.</div><div class="rcard-date">Madrid · hace 2 semanas</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Resultados perfectos desde el primer día con mi Cosori."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23C8E6C9'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%232E7D32' font-weight='bold'%3ECR%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Carlos R.</div><div class="rcard-date">Barcelona · hace 1 mes</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Muy completo. Me ha ayudado a cocinar más sano sin renunciar al sabor."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23BBDEFB'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%231565C0' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Ana G.</div><div class="rcard-date">Valencia · hace 3 semanas</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Las alitas de pollo son imposibles de superar. Mis hijos lo piden cada día."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23F8BBD0'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%23880E4F' font-weight='bold'%3ESM%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Sofía M.</div><div class="rcard-date">Sevilla · hace 1 mes</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+    <div class="rcard"><div class="rcard-stars">★★★★★</div><p>"Vale mucho más de lo que cuesta. Recetas con trucos que marcan la diferencia."</p><div class="rcard-author"><img class="rcard-av" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38'%3E%3Ccircle cx='19' cy='19' r='19' fill='%23FFE0B2'/%3E%3Ctext x='19' y='24' text-anchor='middle' font-size='14' font-family='sans-serif' fill='%23E65100' font-weight='bold'%3ELF%3C/text%3E%3C/svg%3E" alt=""><div><div class="rcard-name">Luis F.</div><div class="rcard-date">Bilbao · hace 2 meses</div></div></div><div class="rcard-tp"><a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank"><span class="tp-logo">TP</span> Reseña verificada</a></div></div>
+  </div></div>
+  <div class="reviews-nav">
+    <button class="rnav-btn" onclick="slideReviews(-1)">&#8249;</button>
+    <button class="rnav-btn" onclick="slideReviews(1)">&#8250;</button>
+  </div>
+</div></div>
+
+<div class="faq">
+  <div class="section-title"><h2>Preguntas frecuentes</h2></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Cómo recibo el eBook?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Recibirás un email con el enlace de descarga en menos de 2 minutos. PDF y EPUB incluidos.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿En qué dispositivos puedo leerlo?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Smartphone, tablet, ordenador y e-reader Kindle o Kobo.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Funciona con cualquier AirFryer?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Sí. Compatible con Philips, Cosori, Tefal, Ninja, Lidl y muchas más marcas.</div></div>
+  <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Tengo garantía de devolución?<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-a">Sí. 30 días de garantía completa. Devolución del 100% sin preguntas.</div></div>
+</div>
+
+<div class="cta-banner">
+  <h2>¿A qué esperas?</h2>
+  <p>Únete a más de 12.000 personas que ya cocinan mejor con su AirFryer</p>
+  <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main light" style="font-size:16px;padding:16px 36px;display:inline-flex">Obtener ahora — solo 6,99€</a>
+</div>
+
+<footer><div class="footer-inner">
+  <div><div class="foot-logo">My<span>Kitchen</span>Recep</div><p class="foot-desc">Tu guía definitiva para cocinar más sano con tu freidora de aire.</p></div>
+  <div class="foot-col"><h5>Navegación</h5><ul><li><a onclick="goHome()" style="cursor:pointer">Inicio</a></li><li><a href="#product" onclick="event.preventDefault();goProduct()">Producto</a></li></ul></div>
+  <div class="foot-col"><h5>Soporte</h5><ul><li><a href="#">Contacto</a></li><li><a href="#">Garantía</a></li></ul></div>
+  <div class="foot-col"><h5>Legal</h5><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li></ul></div>
+</div>
+<div class="foot-bottom"><p>© 2025 MyKitchenRecep.com</p><p style="font-size:11px;color:#bbb">Este sitio puede recibir comisiones por ventas referidas</p></div>
+</footer>
+
+<div class="sticky-buy" id="sticky-buy">
+  <div><span class="sb-price">6,99€</span><br><span class="sb-old">29,99€</span></div>
+  <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main" style="flex:1;justify-content:center">Obtener ahora</a>
+</div>
+
+</div><!-- /page-home -->
+
+
+<!-- ======== PAGE PRODUCT ======== -->
+<div class="page" id="page-product">
+
+<div class="ann"><div class="ann-wrap">
+  <div class="ann-slide show">📥 Descarga digital instantánea — sin esperas</div>
+  <div class="ann-slide">🔒 Pago 100% seguro · SSL</div>
+  <div class="ann-slide">⚡ Oferta limitada — 77% de descuento</div>
+</div></div>
+
+<header class="hdr"><div class="hdr-inner">
+  <div class="logo" onclick="goHome()">My<span>Kitchen</span>Recep</div>
+  <div class="hdr-right">
+    <a href="https://www.trustpilot.com/review/mykitchenrecep.com" target="_blank" class="trust-badge"><span class="stars">★★★★★</span><span>4.8 · Trustpilot</span></a>
+    <a href="https://tkfs.trackforces.com/aff_c?offer_id=104738&aff_id=1315&aff_sub5=2554311358359487" target="_blank" class="btn-main">Comprar — 6,99€</a>
+  </div>
+</div></header>
+
+<div class="prod-wrap">
+  <div class="breadcrumb"><a onclick="goHome()">Inicio</a> › 300 Recetas para AirFryer</div>
+
+  <div class="prod-top">
+    <div class="prod-gallery">
+      <div class="prod-main-img"><img id="main-img" src="img0_cover.jpg" alt="300 Recetas para AirFryer"></div>
+      <div class="prod-thumbs">
+        <div class="prod-thumb active" onclick="switchImg(this,this.querySelector('img').src)">
